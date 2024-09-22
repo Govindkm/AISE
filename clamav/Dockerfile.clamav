@@ -1,11 +1,7 @@
-# Use the official ClamAV image from Docker Hub
-FROM clamav/clamav:latest
+FROM ubuntu:latest
 
-# Update the virus definitions
-RUN freshclam
+RUN apt-get update && \
+    apt-get install -y clamav clamav-daemon && \
+    freshclam
 
-# Expose the port for ClamAV daemon
-EXPOSE 3310
-
-# Start the ClamAV daemon
 CMD ["clamd"]
