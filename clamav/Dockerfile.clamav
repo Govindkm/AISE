@@ -1,0 +1,11 @@
+# Use the official ClamAV image from Docker Hub
+FROM clamav/clamav:latest
+
+# Update the virus definitions
+RUN freshclam
+
+# Expose the port for ClamAV daemon
+EXPOSE 3310
+
+# Start the ClamAV daemon
+CMD ["clamd"]
